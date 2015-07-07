@@ -99,7 +99,7 @@ eval.pred <- function(obj.list, true.val= "y", pred.val= "y_hat", low= "l", upp=
   mod.eval <- matrix(NA, nrow= n, ncol= 5, dimnames= list(paste("mod", 1:n, sep="-"), 
                         c("rmse", "Mean AD", "wt Mean AD", "Max AD", "Pct Class")))
   # 01. define evaluation functions
-  rmse <- function(obs, pred) {sqrt(mean(obs - pred, na.rm=T)^2)}
+  rmse <- function(obs, pred) {sqrt(sum((obs - pred)^2) / length(obs))}
   mnAD <- function(obs, pred) {mean(abs(obs - pred), na.rm=T)}
   wmnAD <- function(obs, pred) {
     wts <- log(abs(pred) + 2)
